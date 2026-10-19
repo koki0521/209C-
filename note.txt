@@ -1,0 +1,58 @@
+標準ライブラリ関数（STL）を学ぶ
+C++で導入されたイテレータ(iterator) を学ぶ
+
+
+コンパイラの方法
+
+コマンドラインからコンパイル
+– > g++ hello.cpp
+– 成功するとa.outという実行形式が生成
+– > ./a.out で実行
+– g++ -o hello hello.cpp とすると，helloという実行形式ができる
+
+画面に文字列を出力し，改行
+課題２
+std::cout<<"Hello,World"<<std::endl;
+std:: cin>> name
+std::left は、その幅の中で値を左寄せにします。std::left の設定は後続の出力にも残りますが、std::setw(14) の幅指定は次の値1つにだけ適用されます。
+Read 
+Completed with input: {
+  "path": "C:\\Users\\koki1\\OneDrive\\Desktop\\C++\\2\\in02.cpp"
+}
+
+`std::setw` を使わずに列をそろえるには、**文字列の長さを調べて、足りない分の空白を出力**します。
+
+たとえば、列幅を14文字に決めたとします。`"Aizu"` は4文字なので、後ろに `14 - 4 = 10` 個の空白を足せば、次の `|` の位置がそろいます。
+
+```cpp
+std::cout << "|  " << last_name;
+for (int i = 0; i < 14 - last_name.length(); i++)
+{
+    std::cout << ' ';
+}
+std::cout << "|  " << first_name;
+```
+
+同じ処理をファーストネームにも書くと、出力はこうなります。
+
+```cpp
+std::cout << "|  " << last_name;
+for (int i = 0; i < 14 - last_name.length(); i++)
+{
+    std::cout << ' ';
+}
+
+std::cout << "|  " << first_name;
+for (int i = 0; i < 14 - first_name.length(); i++)
+{
+    std::cout << ' ';
+}
+
+std::cout << "|  " << student_id << "|\n";
+```
+
+`for` は、指定した回数だけ繰り返す文です。たとえば `last_name.length()` が `4` なら、`i` は `0` から `9` まで変わり、空白を10個出力します。
+
+課題の例のように名前の前にも2つ空白を入れるなら、`"|  "` のように `|` の後へ直接書きます。学籍番号の列も幅をそろえるなら、同じように `student_id` の長さに応じて空白を足します。
+
+この書き方では、各列の幅（ここでは14文字）より長い名前があると、列がずれてしまいます。想定する名前が列幅以内か確認してください。
